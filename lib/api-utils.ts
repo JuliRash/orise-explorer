@@ -14,5 +14,5 @@ export async function fetchWithCors(url: string, options: RequestInit = {}) {
 }
 
 // Base URLs for the blockchain APIs
-export const REST_API_URL = 'http://143.223.80.193:1317';
-export const RPC_API_URL = 'https://143.223.80.193:26657'; 
+export const REST_API_URL = 'http://153.92.210.96:1317';
+export const RPC_API_URL = 'http://153.92.210.96:26657';

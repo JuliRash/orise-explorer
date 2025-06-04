@@ -34,11 +34,11 @@ export function Navbar() {
           <div className="flex items-center space-x-1">
             <Image
               src="/images/Vector.png"
-              alt="UCCASH"
+              alt="Orise"
               width={24}
               height={24}
             />
-            <span className="font-bold text-xl">UCCASH</span>
+            <span className="font-bold text-xl">Orise</span>
           </div>
           <div className="hidden  lg:block py-2 px-3 rounded-md bg-[#F8F8F8]">
             <span className="lg:text-[10px] md:text-xs text-xs  text-muted-foreground">
@@ -107,11 +107,11 @@ export function Navbar() {
               <Link href="/" className="flex items-center gap-2" onClick={() => setIsMenuOpen(false)}>
                 <Image
                   src="/images/Vector.png"
-                  alt="UCCASH"
+                  alt="Orise"
                   width={24}
                   height={24}
                 />
-                <span className="font-bold text-xl">UCCASH</span>
+                <span className="font-bold text-xl">Orise</span>
               </Link>
               {/* <Button variant="ghost" size="icon" onClick={() => setIsMenuOpen(false)}>
                 <X className="h-5 w-5" />

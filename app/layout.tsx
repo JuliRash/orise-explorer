@@ -8,8 +8,8 @@ import { QueryProvider } from '@/components/query-provider'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata = {
-  title: 'UCCASH Explorer',
-  description: 'Universe Chain Block Explorer',
+  title: 'Orise Explorer',
+  description: 'Orise Chain Block Explorer',
   icons: "/favicon.png"
 }
 

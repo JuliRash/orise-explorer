@@ -50,6 +50,7 @@ export function LatestTransactions() {
           // Get sender and receiver from message events
           const messageEvent = events.find((event: any) => event.type === "message");
           if (messageEvent) {
+            console.log(messageEvent, 'oakakaka');
             const senderAttr = messageEvent.attributes.find((attr: any) => attr.key === "sender");
             const recipientAttr = [...events].reverse().find((event: any) => event.type === "coin_received")
               ?.attributes.find((attr: any) => attr.key === "receiver");

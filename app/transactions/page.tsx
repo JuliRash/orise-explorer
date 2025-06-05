@@ -62,19 +62,23 @@ export default function TransactionsPage() {
                 const transferEvent = events.find((event: any) => 
                   event.type === "transfer" || event.type === "coin_spent"
                 )
+
+
                 
                 if (transferEvent) {
                   const amountAttr = transferEvent.attributes.find((attr: any) => 
                     attr.key === "amount" || attr.key === "value"
                   )
                   if (amountAttr && amountAttr.value) {
-                    const rawAmount = amountAttr.value.replace('oai', '')
+                    const rawAmount = amountAttr.value.replace('aoai', '')
                     const value = (BigInt(rawAmount) * BigInt(100) / BigInt(10 ** 18)) / BigInt(100)
                     amount = `${value.toString()} OAI`
                   }
                 }
 
                 const messageEvent = events.find((event: any) => event.type === "message")
+                console.log(messageEvent, 'pissed');
+
                 if (messageEvent) {
                   const senderAttr = messageEvent.attributes.find((attr: any) => attr.key === "sender")
                   const recipientAttr = events.find((event: any) => event.type === "coin_received")

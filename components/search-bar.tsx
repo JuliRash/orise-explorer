@@ -6,7 +6,7 @@ export function SearchBar() {
     <div className="flex flex-col w-full bg-black px-4 py-12 min-h-32 pb-20">
       <div className="w-full flex flex-col gap-3">
         <p className="text-white dark:text-muted-foreground text-lg font-medium">
-          Explore Universe chain
+          Explore Orise chain
         </p>
         <SearchBox />
       </div>

@@ -32,17 +32,20 @@ export function LatestTransactions() {
         // Parse events to get the actual amount transferred
         if (tx.logs && tx.logs.length > 0) {
           const events = tx.logs[0].events;
+
           const coinSpentEvent = events.find((event: any) => event.type === "coin_spent");
+          console.log(coinSpentEvent);
           if (coinSpentEvent) {
             const amountAttr = coinSpentEvent.attributes.find((attr: any) => attr.key === "amount");
             if (amountAttr && amountAttr.value) {
               // Remove 'atucc' from the end and convert to UCC
-              const rawAmount = amountAttr.value.replace('atucc', '');
+              const rawAmount = amountAttr.value.replace('oai', '');
               const value = (BigInt(rawAmount) * BigInt(100) / BigInt(10 ** 18)) / BigInt(100);
               amount = `${value.toString()} UCC`;
+              console.log(amount, 'amount spent')
             }
           }
-
+            console.log("testing this new stuff");
           // Get sender and receiver from message events
           const messageEvent = events.find((event: any) => event.type === "message");
           if (messageEvent) {
@@ -72,6 +75,8 @@ export function LatestTransactions() {
           timeAgo = `${Math.floor(diffSeconds / 86400)} days ago`;
         }
 
+        console.log(amount)
+
         return {
           hash: tx.txhash,
           time: timeAgo,
@@ -86,7 +91,10 @@ export function LatestTransactions() {
     refetchOnWindowFocus: true,
   });
 
+
+
   if (isLoading) {
+
     return (
       <Card>
         <CardHeader className="flex flex-row items-center justify-between">
@@ -100,6 +108,7 @@ export function LatestTransactions() {
       </Card>
     );
   }
+  console.log(transactions, 'console transactions')
 
   return (
     <Card>

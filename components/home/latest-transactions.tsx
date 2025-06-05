@@ -34,18 +34,19 @@ export function LatestTransactions() {
           const events = tx.logs[0].events;
 
           const coinSpentEvent = events.find((event: any) => event.type === "coin_spent");
-          console.log(coinSpentEvent);
           if (coinSpentEvent) {
+            console.log(coinSpentEvent, 'powers');
+
             const amountAttr = coinSpentEvent.attributes.find((attr: any) => attr.key === "amount");
             if (amountAttr && amountAttr.value) {
+
               // Remove 'atucc' from the end and convert to UCC
-              const rawAmount = amountAttr.value.replace('oai', '');
+              const rawAmount = amountAttr.value.replace('aoai', '');
               const value = (BigInt(rawAmount) * BigInt(100) / BigInt(10 ** 18)) / BigInt(100);
-              amount = `${value.toString()} UCC`;
+              amount = `${value.toString()} OAI`;
               console.log(amount, 'amount spent')
             }
           }
-            console.log("testing this new stuff");
           // Get sender and receiver from message events
           const messageEvent = events.find((event: any) => event.type === "message");
           if (messageEvent) {

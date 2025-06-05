@@ -54,7 +54,7 @@ export default function TransactionsPage() {
 
         return {
           transactions: data.tx_responses.map((tx: any) => {
-            let from = "", to = "", amount = "0 UCC"
+            let from = "", to = "", amount = "0 OAI"
             
             try {
               if (tx.logs && tx.logs.length > 0) {
@@ -68,9 +68,9 @@ export default function TransactionsPage() {
                     attr.key === "amount" || attr.key === "value"
                   )
                   if (amountAttr && amountAttr.value) {
-                    const rawAmount = amountAttr.value.replace('atucc', '')
+                    const rawAmount = amountAttr.value.replace('oai', '')
                     const value = (BigInt(rawAmount) * BigInt(100) / BigInt(10 ** 18)) / BigInt(100)
-                    amount = `${value.toString()} UCC`
+                    amount = `${value.toString()} OAI`
                   }
                 }
 

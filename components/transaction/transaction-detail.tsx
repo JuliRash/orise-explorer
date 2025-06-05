@@ -119,9 +119,10 @@ export function TransactionDetail({ hash }: { hash: string }) {
     if (attr.key === 'sender') acc.from = attr.value;
     if (attr.key === 'recipient') acc.to = attr.value;
     if (attr.key === 'amount'){
-      const rawAmount = attr.value.replace('atucc', '');
+      const rawAmount = attr.value.replace('aoai', '');
+      console.log(rawAmount,'aaaaa');
       let convertedAmount = (BigInt(rawAmount) * BigInt(100) / BigInt(10 ** 18)) / BigInt(100)
-      acc.amount = `${convertedAmount.toString()} UCC`;
+      acc.amount = `${convertedAmount.toString()} OAI`;
     } 
     return acc;
   }, {});

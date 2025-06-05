@@ -174,7 +174,7 @@ export function SearchBox() {
 
       // Check if search query is an address
       if ((selectedFilter === "All filters" || selectedFilter === "Addresses") && 
-          (searchQuery.startsWith('ucc'))) {
+          (searchQuery.startsWith('orise'))) {
         const addressResults = await searchTransactionsByAddress(searchQuery);
         results.push(...addressResults);
       }

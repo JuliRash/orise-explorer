@@ -42,7 +42,7 @@ export function Navbar() {
           </div>
           <div className="hidden  lg:block py-2 px-3 rounded-md bg-[#F8F8F8]">
             <span className="lg:text-[10px] md:text-xs text-xs  text-muted-foreground">
-              UCC Price: $583.93{" "}
+              Orise Price: $583.93{" "}
               <span className="text-uccash-green">(+0.38%)</span>{" "}
               <span className="opacity-50">|</span> Gas: 1 GWei
             </span>

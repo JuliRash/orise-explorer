@@ -37,7 +37,7 @@ export function ChainDetails() {
       // Format network name based on network ID
       const networkId = data.default_node_info.network
       const isTestnet = networkId.includes('testnet') || networkId.includes('9000')
-      const networkName = isTestnet ? 'Universe Chain Testnet' : 'Universe Chain Mainnet'
+      const networkName = isTestnet ? 'Orise Chain Testnet' : 'Orise Chain Mainnet'
       
       return {
         network: networkName,
@@ -70,7 +70,7 @@ export function ChainDetails() {
             <NetworkIcon className="w-5 h-5" />
             Network Details
           </h2>
-          <p className="text-sm text-muted-foreground">Current state of the Universe Chain</p>
+          <p className="text-sm text-muted-foreground">Current state of the Orise Chain</p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">

@@ -28,10 +28,24 @@ export function LatestTransactions() {
 
       return data.tx_responses.map((tx: any) => {
         let from = "", to = "", amount = "0 UCC";
+        let evmTo = "", evmFrom = "";
 
         // Parse events to get the actual amount transferred
         if (tx.logs && tx.logs.length > 0) {
           const events = tx.logs[0].events;
+
+          const ethTxEvent = events.find((e: any) => e.type === "ethereum_tx");
+          const evmModuleMsg = events.find((e: any) => e.type === "message" && e.attributes.some((a: any) => a.key === "module" && a.value === "evm"));
+
+          if (ethTxEvent) {
+            const evmToAttr = ethTxEvent.attributes.find((a: any) => a.key === "recipient");
+            if (evmToAttr) evmTo = evmToAttr.value;
+          }
+
+          if (evmModuleMsg) {
+            const evmFromAttr = evmModuleMsg.attributes.find((a: any) => a.key === "sender");
+            if (evmFromAttr) evmFrom = evmFromAttr.value;
+          }
 
           const coinSpentEvent = events.find((event: any) => event.type === "coin_spent");
           if (coinSpentEvent) {
@@ -60,6 +74,8 @@ export function LatestTransactions() {
 
           }
           console.log("recipientAttr", to);
+          console.log("ethadd", evmFrom);
+          console.log("ethadd", evmTo);
         }
 
         // Calculate time difference

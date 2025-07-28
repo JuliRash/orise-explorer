@@ -5,6 +5,7 @@ import { useQuery } from "@tanstack/react-query";
 import { Loader2, FileText, ArrowRight } from "lucide-react";
 import { fetchWithCors, REST_API_URL } from "@/lib/api-utils";
 import Link from "next/link";
+import { useState } from "react";
 
 interface Transaction {
   hash: string;
@@ -12,9 +13,12 @@ interface Transaction {
   from: string;
   to: string;
   amount: string;
+  evmFrom: string | null;
+  evmTo: string | null;
 }
 
 export function LatestTransactions() {
+  const [showEvm, setShowEvm] = useState(true);
   const { data: transactions, isLoading } = useQuery<Transaction[]>({
     queryKey: ["latestTransactions"],
     queryFn: async () => {
@@ -100,7 +104,9 @@ export function LatestTransactions() {
           time: timeAgo,
           from,
           to,
-          amount
+          amount,
+          evmFrom: evmFrom,
+          evmTo: evmTo
         };
       });
     },
@@ -115,7 +121,7 @@ export function LatestTransactions() {
 
     return (
       <Card>
-        <CardHeader className="flex flex-row items-center justify-between">
+         <CardHeader className="flex flex-row items-center justify-between">
           <CardTitle className="text-2xl font-bold">Latest Transactions</CardTitle>
         </CardHeader>
         <CardContent>
@@ -132,6 +138,15 @@ export function LatestTransactions() {
     <Card>
       <CardHeader className="flex flex-row items-center justify-between">
         <CardTitle className="text-2xl font-bold">Latest Transactions</CardTitle>
+        <div className="flex items-center gap-2">
+          <button
+            onClick={() => setShowEvm((prev) => !prev)}
+            className={`px-3 py-1 text-sm rounded-full border transition-colors ${showEvm ? 'bg-blue-500 text-white' : 'bg-gray-100 text-gray-800'
+              }`}
+          >
+            {showEvm ? 'Showing ETH' : 'Showing Cosmos'}
+          </button>
+        </div>
       </CardHeader>
       <CardContent>
         <div className="space-y-6">
@@ -156,11 +171,21 @@ export function LatestTransactions() {
               <div className="flex flex-col gap-2">
                 <div className="grid grid-cols-[50px_1fr] items-center text-sm">
                   <span className="text-muted-foreground">From</span>
-                  <span className="font-mono text-blue-500">{tx.from.slice(0, 8)}...{tx.from.slice(-8)}</span>
+                  <span className="font-mono text-blue-500">
+                    {showEvm
+                      ? `${tx.evmFrom?.slice(0, 8)}...${tx.evmFrom?.slice(-8)}`
+                      : `${tx.from?.slice(0, 8)}...${tx.from?.slice(-8)}`
+                    }
+                  </span>
                 </div>
                 <div className="grid grid-cols-[50px_1fr] items-center text-sm">
                   <span className="text-muted-foreground">To</span>
-                  <span className="font-mono text-blue-500">{tx.to.slice(0, 8)}...{tx.to.slice(-8)}</span>
+                  <span className="font-mono text-blue-500">
+                    {showEvm
+                      ? `${tx.evmTo?.slice(0, 8)}...${tx.evmTo?.slice(-8)}`
+                      : `${tx.to?.slice(0, 8)}...${tx.to?.slice(-8)}`
+                    }
+                  </span>
                 </div>
               </div>
 
